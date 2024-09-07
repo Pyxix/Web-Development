@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone</title>
+    <link rel="icon" type="image/x-icon" href="/Images/link icon.ico">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Martel+Sans:wght@200;300;400;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: black;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .main {
+            background-image: url(Assets/header_bg.jpg);
+            height: 70vh;
+            position: relative;
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .main .box1 {
+            height: 100%;
+            width: 100%;
+            opacity: 0.7;
+            background-color: black;
+            position: absolute;
+            top: 0;
+        }
+
+        nav {
+            max-width: 80vw;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 52px;
+            padding: 10px;
+        }
+
+        nav .nav-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        nav img {
+            width: 130px;
+            filter: brightness(2);
+            transition: filter 0.3s ease;
+            z-index: 2;
+        }
+
+        nav button, nav select.language-select {
+            background-color: red;
+            color: white;
+            border: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 7px;
+            font-size: 1rem;
+            cursor: pointer;
+            filter: brightness(2);
+            z-index: 2;
+        }
+
+        nav select.language-select {
+            background-color: black;
+        }
+
+        .main .box2 {
+            height: calc(100% - 52px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            flex-direction: column;
+            position: relative;
+            gap: 15px;
+            padding: 0 30px;
+            text-align: center;
+        }
+
+        .main .box2 span {
+            font-weight: 400;
+        }
+
+        .main .box2 span:nth-child(1) {
+            font-weight: 900;
+            font-size: 2rem;
+        }
+
+        .main .box2 span:nth-child(2) {
+            font-size: 1.5rem;
+        }
+
+        .main .box2 span:nth-child(3) {
+            font-size: 1.25rem;
+        }
+
+        .line-separation {
+            background-color: rgb(68, 67, 67);
+            height: 5px;
+        }
+
+        .btn {
+            background-color: white;
+            font-weight: bold;
+        }
+
+        .btn_top-1, .btn_top-2 {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 7px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .email {
+            background: black;
+            color: white;
+            border: 1px solid white;
+            padding: 10px;
+            border-radius: 7px;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .email::placeholder {
+            color: white;
+        }
+
+        nav .language-select option {
+            background-color: black;
+            color: white;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .first {
+            display: flex;
+            justify-content: center;
+            max-width: 80vw;
+            margin: auto;
+            color: white;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+            text-align: center;
+            padding: 50px;
+        }
+        
+        .secimg {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .secimg img {
+            width: 100%;
+            height: auto;
+            z-index: 31;
+        }  
+
+        .secimg video {
+            position: absolute;
+            width: 70%;
+            height: 70%;
+            top: 15%;
+            left: 15%;
+            border-radius: 6px;
+        }
+
+        .font {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+ 
+        .font span:nth-child(1) {
+            font-size: 2rem;
+            font-weight: bolder;
+        }
+
+        .font span:nth-child(2) {
+            font-size: 1.25rem;
+        }
+
+        .secimg-third {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .secimg-third img {
+            width: 100%;
+            height: auto;
+        }
+
+        .secimg-third video {
+            position: absolute;
+            width: 65%;
+            height: 44%;
+            top: 9%;
+            left: 16.5%;
+        }
+
+        .faq {
+            background-color: black;
+            color: white;
+            padding: 35px;
+            font-size: 1rem;
+        }
+
+        .faq h2 {
+            text-align: center;
+        }
+
+        .faq .box5 {
+            background-color: gray;
+            color: white;
+            padding: 24px;
+            max-width: 80vw;
+            margin: 35px auto;
+            justify-content: space-between;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq .box5:hover {
+            background-color: red;
+        }
+
+        footer {
+            color: white;
+            max-width: 80vw;
+            margin: auto;
+            padding: 20px;
+            font-size: 0.875rem;
+        }
+
+        .footer1 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+        }
+
+        .footer-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+        }
+
+        footer .questions {
+            padding: 15px 0;
+        }
+
+        @media (max-width: 1024px) {
+            .nav-content {
+                gap: 10px;
+            }
+
+            .secimg, .secimg-third {
+                max-width: 400px;
+            }
+
+            .secimg video, .secimg-third video {
+                width: 60%;
+                height: 60%;
+            }
+
+            .font span:nth-child(1) {
+                font-size: 1.75rem;
+            }
+
+            .font span:nth-child(2) {
+                font-size: 1.125rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main .box2 span:nth-child(1) {
+                font-size: 1.5rem;
+            }
+
+            .main .box2 span:nth-child(2) {
+                font-size: 1.25rem;
+            }
+
+            .main .box2 span:nth-child(3) {
+                font-size: 1rem;
+            }
+
+            .first .font span:nth-child(1) {
+                font-size: 1.5rem;
+            }
+
+            .first .font span:nth-child(2) {
+                font-size: 1rem;
+            }
+
+            .secimg, .secimg-third {
+                max-width: 300px;
+            }
+
+            .secimg video, .secimg-third video {
+                width: 50%;
+                height: 50%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+            }
+
+            .nav-content {
+                gap: 10px;
+            }
+
+            .btn_top-1, .btn_top-2 {
+                padding: 10px;
+                font-size: 0.875rem;
+            }
+
+            .email {
+                font-size: 0.875rem;
+            }
+
+            .first .font span:nth-child(1) {
+                font-size: 1.25rem;
+            }
+
+            .first .font span:nth-child(2) {
+                font-size: 0.875rem;
+            }
+
+            .secimg, .secimg-third {
+                max-width: 100%;
+            }
+
+            .secimg video, .secimg-third video {
+                width: 80%;
+                height: auto;
+            }
+
+            .faq .box5 {
+                padding: 20px;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main section with background image and content -->
+    <div class="main">
+        <!-- Navigation bar -->
+        <nav>
+            <img src="Assets/logo.svg" alt="Logo"> <!-- Logo image -->
+            <div class="nav-content">
+                <!-- Language selection dropdown -->
+                <select class="language-select">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                </select>
+                <!-- Sign In button -->
+                <button class="btn_top-1">Sign In</button>
+            </div>
+        </nav>
+        <!-- Dark overlay -->
+        <div class="box1"></div>
+        <!-- Main content box -->
+        <div class="box2">
+            <span>Unlimited movies, TV shows and more</span>
+            <span>Watch anywhere. Cancel anytime.</span>
+            <span>Ready to watch? Enter your email to create or restart your membership.</span>
+            <div class="input-container">
+                <!-- Email input field -->
+                <input class="email" type="email" placeholder="Email address">
+                <!-- Get Started button -->
+                <button class="btn_top-2">Get Started &gt;</button>
+            </div>
+        </div>
+        <!-- Line separator -->
+        <div class="line-separation"></div>
+    </div>  
+
+    <!-- Section showcasing TV viewing -->
+    <section class="first">
+        <div class="font">
+            <span>Enjoy on your TV</span>
+            <span>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</span>
+        </div>
+        <div class="secimg">
+            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png" alt="TV">
+            <!-- Video showcasing TV -->
+            <video src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-in-0819.m4v" autoplay loop muted></video>
+        </div>
+    </section>
+
+    <!-- Line separator -->
+    <div class="line-separation"></div>
+
+    <!-- Section showcasing offline downloads -->
+    <section class="first">
+        <div class="secimg">
+            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" alt="Mobile Download">
+        </div>
+        <div class="font">
+            <span>Download your shows to watch offline</span>
+            <span>Save your favourites easily and always have something to watch.</span>
+        </div>
+    </section>
+
+    <!-- Line separator -->
+    <div class="line-separation"></div>
+
+    <!-- Section showcasing watching on various devices -->
+    <section class="first">
+        <div class="font">
+            <span>Watch everywhere</span>
+            <span>Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</span>
+        </div>
+        <div class="secimg-third">
+            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/device-pile-in.png" alt="Device Pile">
+            <!-- Video showcasing devices -->
+            <video src="Assets/netflix video.m4v" autoplay loop muted></video>
+        </div>
+    </section>
+
+    <!-- Line separator -->
+    <div class="line-separation"></div>
+
+    <!-- Frequently Asked Questions section -->
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <!-- FAQ item -->
+        <div class="box5">
+            <span>What is Netflix?</span>  
+        </div>
+
+        <div class="box5">
+            <span>How much does Netflix cost?</span>
+        </div>
+
+        <div class="box5">
+            <span>Where can I watch?</span>
+        </div>
+
+        <div class="box5">
+            <span>How do I cancel?</span>
+        </div>
+
+        <div class="box5">
+            <span>What can I watch on Netflix?</span>       
+        </div>
+
+        <div class="box5">
+            <span>Is Netflix good for kids?</span>       
+        </div>
+    </section>
+
+    <!-- Line separator -->
+    <div class="line-separation"></div>
+
+    <!-- Footer section -->
+    <footer>
+        <div class="footer1">
+            <div class="footer-item">
+                <a href="#">FAQ</a>
+                <a href="#">Investor Relations</a>
+                <a href="#">Privacy</a>
+                <a href="#">Speed test</a>
+            </div>
+
+            <div class="footer-item">
+                <a href="#">Help Centre</a>
+                <a href="#">Jobs</a>
+                <a href="#">Cookie Preferences</a>
+                <a href="#">Legal Notices</a>
+            </div>
+
+            <div class="footer-item">
+                <a href="#">Account</a>
+                <a href="#">Ways to Watch</a>
+                <a href="#">Corporate Information</a>
+                <a href="#">Only on Netflix</a>
+            </div>
+
+            <div class="footer-item">
+                <a href="#">Media Centre</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+        <!-- Contact information -->
+        <div class="questions">
+            <span>Questions? Call 000-800-919-1694</span>
+        </div>
+    </footer>
+</body>
+</html>
